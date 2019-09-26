@@ -1,0 +1,65 @@
+Docker Tutorial:
+ ☐ What is docker?
+   ☐ cgroup
+ ☐ What is a Docker container?
+ ☐ What is a Docker Image
+ ☐ Is there a Docker container lifecycle?
+ ☐ How to install docker?
+   sudo curl -sSL https://get.docker.com/ | sh
+ Definitions:
+   ☐ Image
+   ☐ Layers
+   ☐ Container
+   ☐ TAG
+   ☐ Repository
+   ☐ Volume
+   ☐ Network
+
+Creating a running container:
+ ☐ Create a Container
+   docker run --name hello-world -d -p 8080:80 nginx
+ ☐ Check running containers
+   docker ps -a
+   docker stats
+ ☐ Interacting with the container
+   docker exec -it hello-world /bin/bash
+ ☐ Copying files from containers
+   docker cp index.html hello-world:/usr/share/nginx/html/index.html
+ ☐ Creating image from Running Container
+   docker commit hello-world my-docker-image
+   docker image ls
+ ☐ Stopping/Starting/Removing Docker containers
+   docker stop hello-world
+   docker start hello-world
+   docker rm hello-world
+ ☐ Sharing an image
+   docker login
+   docker tag my-docker-image vepo/my-docker-image
+   docker push vepo/my-docker-image
+ ☐ Docker Layers
+   docker history vepo/my-docker-image
+ ☐ Dockerfiles - Adding files
+    cd dockerfile/
+    docker build . -t my-container-add
+    docker run -d --name hello-add -p 8081:80 my-container-add
+    ☐ Docs: 
+      https://docs.docker.com/engine/reference/builder/
+ ☐ Docker volumes
+   docker run -d --name my-container-volumes -v $(pwd)/index.html:/usr/share/nginx/html/index.html -p 8082:80 nginx
+   docker run -d --name my-container-volumes -v "c:\Users\victoro\source\docker-tutorial\index.html":/usr/share/nginx/html/index.html -p 8082:80 nginx
+   docker restart my-container-volumes
+Docker Compose:
+  ☐ Docs:
+    https://docs.docker.com/compose/compose-file/
+  ☐ How to Configure containers?
+  Commands:
+    ☐ Build
+    ☐ Up
+    ☐ Stop
+    ☐ Pull
+  ☐ Restart
+    docker exec -it compose_load-balancer_1 /bin/bash
+    cat /proc/1/cmdline
+    kill 1
+
+

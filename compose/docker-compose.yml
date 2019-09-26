@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  load-balancer:
+    image: nginx:1.16
+    restart: always
+    volumes:
+      - ./load-balancer.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - 8080:80
+
+  backend1:
+    image: nginx:1.16
+    restart: always
+    volumes:
+      - ./index-1.html:/usr/share/nginx/html/index.html:ro
+
+  backend2:
+    image: nginx:1.16
+    restart: always
+    volumes:
+      - ./index-2.html:/usr/share/nginx/html/index.html:ro
+
+  backend3:
+    image: nginx:1.16
+    restart: always
+    volumes:
+      - ./index-3.html:/usr/share/nginx/html/index.html:ro
