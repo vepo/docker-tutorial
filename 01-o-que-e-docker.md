@@ -1,6 +1,6 @@
 # O que é Docker?
 
-[Voltar](/README.md)
+[Voltar](/README.md) [Próximo](/02-building-blocks.md)
 
 Docker é:
 
@@ -17,4 +17,24 @@ Um container é um padrão de componente que permite o empacotamento de aplicaç
 
 ## Quais são essas tecnologias?
 
-[TODO]
+Docker se baseia em algumas tecnologias já existentes no Linux.
+* [COW - Copy On Write](https://pt.wikipedia.org/wiki/C%C3%B3pia_em_grava%C3%A7%C3%A3o)
+* [cgroups](https://en.wikipedia.org/wiki/Cgroups)
+* [iptables](https://pt.wikipedia.org/wiki/Iptables)
+* [Linux Namespaces](https://en.wikipedia.org/wiki/Linux_namespaces)
+
+### COW
+
+_Copy On Write_ é uma técnica que permite a criação de uma estrutura de arquivos por camada. Cada camada altera a anterior e camadas podem ser compartilhadas com processos diferentes.
+
+### cgroups
+
+_cgroups_ é uma feature do Linux que permite controlar o tanto de recurso (CPU, Memória, I/O) que um processo pode utilizar.
+
+### iptables
+
+_iptables_ é um programa Linux que permite criar regras de redirecionamento de portas dentro do Linux.
+
+### Linux Namespaces
+
+_Linux Namespaces_ permite o compartilhamento, e o isolamento, de recursos do SO dentro do Linux. Similar ao _cgroups_, mas se refere a outros tipos de recursos. Por exemploe: PIDs, nomes de arquivos, hostnames, etc...
