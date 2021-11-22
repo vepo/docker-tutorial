@@ -1,5 +1,7 @@
 # Imagens e Repositório
 
+[Voltar](/04-controlando-um-container.md)  [Próximo](/06-criando-uma-imagem.md)
+
 O docker é baseado em uma imagem. Uma imagem é o ponto de inicio de um container. Ao se criar um container a partir de uma imagem, ela permanece imutável. Se você alterar um container, a imagem não é alterada.
 
 Containers em execução podem ser salvos como uma nova imagem, para isso use o comando `docker commit`, veja a documentação abaixo:
