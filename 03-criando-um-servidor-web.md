@@ -1,8 +1,8 @@
 # Criando um Servidor Web
 
-[Voltar](/02-building-blocks.md)
+[Voltar](/02-building-blocks.md) [Próximo](/04-controlando-um-container.md)
 
-Nessa aula vamos criar um servidor Web usando Nginx
+Nessa passo vamos criar um servidor Web usando Nginx:
 
 ```bash
 $ docker search nginx
@@ -74,5 +74,46 @@ Commercial support is available at
 
 <p><em>Thank you for using nginx.</em></p>
 </body>
+</html>
+```
+
+Esse container está rodando com a imagem base do NGIX, para verificar quais containeres estão em execução, execute `docker ps`:
+
+```bash
+$ docker ps
+CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS         PORTS                                   NAMES
+afc52ea50894   nginx     "/docker-entrypoint.…"   6 minutes ago   Up 6 minutes   0.0.0.0:8080->80/tcp, :::8080->80/tcp   hello-world
+```
+
+Através do CLI do docker é possível verificar as estatísticas do container em execução.
+
+
+```bash
+$ docker stats --no-stream
+CONTAINER ID   NAME          CPU %     MEM USAGE / LIMIT     MEM %     NET I/O           BLOCK I/O   PIDS
+afc52ea50894   hello-world   0.00%     6.719MiB / 12.26GiB   0.05%     2.56kB / 2.47kB   0B / 0B     9
+```
+
+Os recursos podem ser limitados ao iniciar o container, se quisermos limitar  a memória em 12MB e CPU em 1, basta executar:
+
+```bash
+$ docker run --name hello-world --memory 12MB  --cpus 1 -p 8080:80 -d nginx
+43848a573db629515d2a73a26eb7293eb2421de937240197f3dfcde97aa26cb6
+
+$ docker stats --no-stream
+CONTAINER ID   NAME          CPU %     MEM USAGE / LIMIT   MEM %     NET I/O     BLOCK I/O   PIDS
+43848a573db6   hello-world   0.00%     6.652MiB / 12MiB    55.44%    696B / 0B   0B / 0B     9
+```
+
+O próximo passo é alterar o container em execução, para isso:
+
+```bash
+$ docker cp index.html hello-world:/usr/share/nginx/html/index.html
+
+$ curl localhost:8080 -s
+<html>
+    <body>
+        <h1>My First Container!!!</h1>
+    </body>
 </html>
 ```
